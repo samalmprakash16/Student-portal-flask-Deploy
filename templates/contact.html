@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid-2-col">
+    <section class="glass-card">
+        <h2>Submit Inquiry</h2>
+        <form action="{{ url_for('contact') }}" method="POST" class="futuristic-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="e.g. Alex Morgan">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="alex@nexus.edu">
+            </div>
+            <div class="form-group">
+                <label for="course">Program Interest</label>
+                <select id="course" name="course">
+                    <option value="BCA">BCA - Computer Applications</option>
+                    <option value="BSc">BSc - Computer Science</option>
+                    <option value="MCA">MCA - Master Applications</option>
+                    <option value="MSc">MSc - Data Science</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="3" placeholder="Enter inquiry..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">Transmit Data</button>
+        </form>
+    </section>
+
+    <section class="glass-card">
+        <h2>CRM Captured Leads</h2>
+        <div class="crm-lead-list">
+            {% for lead in leads %}
+                <div class="lead-item">
+                    <h4>{{ lead.name }} <span class="badge">{{ lead.course }}</span></h4>
+                    <p><strong>Email:</strong> {{ lead.email }}</p>
+                    <p class="text-muted">{{ lead.message }}</p>
+                </div>
+            {% else %}
+                <p class="text-muted">No CRM logs found in system database.</p>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if page == 'about' %}
+    <section class="glass-card">
+        <h2>About System Architecture</h2>
+        <p class="text-muted">Designed for modern visual developers and students requiring fast access to educational metrics, dynamic profile creation, and automated CRM tracking.</p>
+        <div class="grid-2-col margin-top">
+            <div class="stat-box">
+                <h3>99.9%</h3>
+                <p>System Efficiency</p>
+            </div>
+            <div class="stat-box">
+                <h3>Sub-ms</h3>
+                <p>Response Latency</p>
+            </div>
+        </div>
+    </section>
+{% else %}
+    <section class="hero-section">
+        <div class="hero-badge">System Status: Operational</div>
+        <h1 class="hero-title">Next-Generation <span class="gradient-text">Student Portal</span></h1>
+        <p class="hero-sub">Manage academic trajectories, configure custom profiles, and monitor real-time course curricula with maximum precision.</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('profile') }}" class="btn btn-primary">Customize Profile</a>
+            <a href="{{ url_for('courses') }}" class="btn btn-secondary">Explore Courses</a>
+        </div>
+    </section>
+{% endif %}
+{% endblock %}

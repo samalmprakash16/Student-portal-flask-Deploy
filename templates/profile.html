@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid-2-col">
+    <!-- Form to Create/Update Profile -->
+    <section class="glass-card">
+        <h2>Create / Edit Profile</h2>
+        <form action="{{ url_for('profile') }}" method="POST" class="futuristic-form">
+            <div class="form-group">
+                <label for="student_id">Student ID</label>
+                <input type="text" id="student_id" name="student_id" value="{{ profile.student_id }}" required>
+            </div>
+            <div class="form-group">
+                <label for="full_name">Full Name</label>
+                <input type="text" id="full_name" name="full_name" value="{{ profile.full_name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role / Title</label>
+                <input type="text" id="role" name="role" value="{{ profile.role }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="{{ profile.email }}" required>
+            </div>
+            <div class="form-group">
+                <label for="program">Degree Program</label>
+                <input type="text" id="program" name="program" value="{{ profile.program }}">
+            </div>
+            <div class="form-group">
+                <label for="status">Enrollment Status</label>
+                <select id="status" name="status">
+                    <option value="Active" {% if profile.status == 'Active' %}selected{% endif %}>Active</option>
+                    <option value="Graduated" {% if profile.status == 'Graduated' %}selected{% endif %}>Graduated</option>
+                    <option value="On Leave" {% if profile.status == 'On Leave' %}selected{% endif %}>On Leave</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <input type="text" id="skills" name="skills" value="{{ profile.skills }}">
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea id="bio" name="bio" rows="3">{{ profile.bio }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">Save Profile</button>
+        </form>
+    </section>
+
+    <!-- Profile Display Section -->
+    <section class="glass-card profile-preview-card">
+        <h2>Profile Info</h2>
+        <div class="profile-header margin-top">
+            <div class="avatar">{{ profile.full_name[0] if profile.full_name else 'A' }}</div>
+            <div>
+                <h3>{{ profile.full_name }}</h3>
+                <p class="role-subtitle">{{ profile.role }}</p>
+                <span class="badge status-badge">{{ profile.status }}</span>
+            </div>
+        </div>
+        
+        <hr class="divider">
+
+        <div class="profile-details">
+            <div class="detail-row">
+                <span class="detail-label">ID Code</span>
+                <span class="detail-value highlight-text">{{ profile.student_id }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Email</span>
+                <span class="detail-value">{{ profile.email }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Program</span>
+                <span class="detail-value">{{ profile.program }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Skills</span>
+                <span class="detail-value">{{ profile.skills }}</span>
+            </div>
+        </div>
+
+        <div class="bio-box">
+            <h4>Bio</h4>
+            <p>{{ profile.bio }}</p>
+        </div>
+    </section>
+</div>
+{% endblock %}

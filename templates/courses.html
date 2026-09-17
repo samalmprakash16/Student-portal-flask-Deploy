@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    {% if courses %}
+        <h2 class="page-heading">Available Academic Programs</h2>
+        <div class="card-grid">
+            {% for course in courses %}
+                <article class="glass-card course-card">
+                    <span class="badge">{{ course.level }}</span>
+                    <h3>{{ course.code }}</h3>
+                    <h4>{{ course.name }}</h4>
+                    <p class="text-muted">Duration: {{ course.duration }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if subjects %}
+        <section class="glass-card">
+            <h2>Curriculum & Subject Modules</h2>
+            <ul class="futuristic-list">
+                {% for subject in subjects %}
+                    <li><span class="bullet">▹</span> {{ subject }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+</section>
+{% endblock %}
